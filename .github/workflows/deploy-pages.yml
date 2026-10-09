@@ -1,10 +1,10 @@
 # Deploy the static site to GitHub Pages.
 #
 # What this does on every push to main:
-#   1. "build"  — assembles the SunSun JP restaurant site (index.html,
-#                 menu.html, styles.css, images/) in ./site/dist and runs a
-#                 quick integrity check (no build tools required — the site
-#                 is plain static HTML/CSS + JPG photos).
+#   1. "build"  — assembles the site in ./site/dist: the root site picker
+#                 (index.html), the To-do app (todo-list.html), the SunSun JP
+#                 restaurant site (restaurant.html + restaurant-menu.html +
+#                 styles.css + images/), then runs a quick integrity check.
 #   2. "deploy" — publishes the built site to GitHub Pages via the official
 #                 actions/deploy-pages action.
 #
@@ -18,7 +18,9 @@ on:
     branches: [main]
     paths:
       - 'index.html'
-      - 'menu.html'
+      - 'todo-list.html'
+      - 'restaurant.html'
+      - 'restaurant-menu.html'
       - 'styles.css'
       - 'images/**'
       - 'site/**'
@@ -45,20 +47,23 @@ jobs:
       - name: Build site
         run: |
           mkdir -p site/dist
-          # The restaurant site: root pages + shared stylesheet + photos.
-          cp index.html menu.html styles.css site/dist/
+          # Root site picker + To-do app.
+          cp index.html site/dist/
+          cp todo-list.html site/dist/
+          # SunSun JP restaurant site + shared stylesheet + photos.
+          cp restaurant.html restaurant-menu.html styles.css site/dist/
           cp -r images site/dist/images
-          # Keep the todo app reachable too (it lives under /todo-list.html).
-          cp todo-list.html site/dist/todo-list.html
 
       - name: Sanity check
         run: |
           test -s site/dist/index.html
-          test -s site/dist/menu.html
+          test -s site/dist/todo-list.html
+          test -s site/dist/restaurant.html
+          test -s site/dist/restaurant-menu.html
           test -s site/dist/styles.css
           test -s site/dist/images/interior-counter.jpg
-          grep -q "SunSun JP" site/dist/index.html
-          echo "build ok: restaurant site assembled"
+          grep -q "SunSun's Sites" site/dist/index.html
+          echo "build ok: root picker + todo + restaurant site assembled"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

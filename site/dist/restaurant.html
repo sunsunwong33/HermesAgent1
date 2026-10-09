@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SunSun JP | 和食 Fusion — 中環日料 · 江戶前手藝 × 現代融合</title>
+  <meta name="description" content="SunSun JP 是一間揉合傳統江戶前手藝與現代西日融合風格(Washoku Fusion)的高質感日式餐廳,位於香港中環威靈頓街 123 號。嚴選日本空運時令漁獲,秉持不時不食。歡迎線上訂座。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="restaurant.html" aria-label="SunSun JP 首頁">
+        <span class="brand-name">SunSun <span>JP</span></span>
+        <span class="brand-sub">和食 Fusion</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="開啟選單" aria-expanded="false">
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#philosophy">料理理念</a></li>
+        <li><a href="#dishes">招牌菜式</a></li>
+        <li><a href="#gallery">店內環境</a></li>
+        <li><a href="#hours">營業時間</a></li>
+        <li><a href="#visit">聯絡我們</a></li>
+        <li><a class="nav-cta" href="restaurant-menu.html">View Menu</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-bg" role="img" aria-label="SunSun JP 壽司吧檯與用餐環境"></div>
+    <div class="container hero-content">
+      <p class="hero-kicker">和食 Fusion &nbsp;·&nbsp; Edomae × Modern</p>
+      <h1 class="hero-title">SunSun <span>JP</span></h1>
+      <p class="hero-tag">江戶前手藝 <em>×</em> 現代融合料理</p>
+      <p class="hero-note">香港中環 · 威靈頓街 123 號 JP 大廈地下 2 號舖</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="restaurant-menu.html">View Menu</a>
+        <a class="btn btn-ghost" href="https://wa.me/85298765432" target="_blank" rel="noopener">WhatsApp 訂座</a>
+      </div>
+    </div>
+    <span class="hero-scroll">SCROLL</span>
+  </section>
+
+  <!-- ================= ABOUT 餐廳簡介 ================= -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-copy">
+        <p class="eyebrow">關於 SunSun JP</p>
+        <h2 class="section-title">寧靜木質空間,<br />視覺與味覺的極致饗宴</h2>
+        <p><strong>SunSun JP</strong> 是一間揉合傳統江戶前手藝與現代西日融合風格 (Washoku Fusion) 的高質感日式餐廳。</p>
+        <p>
+          店內裝潢採用沉穩的木質調與和風簡約設計,搭配柔和的暖光,營造出寧靜且舒適的用餐氛圍。
+          無論是<strong>商務聚餐、情侶約會還是與好友小聚</strong>,SunSun JP 都能為您帶來兼具視覺與味覺的極致饗宴。
+        </p>
+      </div>
+      <figure class="about-figure">
+        <img src="images/interior-counter.jpg" alt="SunSun JP 壽司吧檯,廚師現場製作壽司" loading="lazy" />
+        <figcaption>壽司吧檯 — chef 現場發辦,近距離感受料理過程</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= PHILOSOPHY 品牌與料理理念 ================= -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="head-center">
+        <p class="eyebrow">品牌與料理理念</p>
+        <h2 class="section-title">匠心傳承,融合創新</h2>
+        <p class="section-sub">三個信念,成就每一道端上桌的料理。</p>
+      </div>
+
+      <div class="philosophy-grid">
+        <article class="philo-card">
+          <span class="philo-no">壹</span>
+          <h3>匠心傳承,融合創新</h3>
+          <p class="jp">匠の心 × 融合</p>
+          <p>我們堅持嚴選每日由日本空運到港的頂級時令漁獲,並結合當造的本地及環球有機食材。</p>
+        </article>
+        <article class="philo-card">
+          <span class="philo-no">貳</span>
+          <h3>不時不食</h3>
+          <p class="jp">季節限定 · Seasonal</p>
+          <p>料理長秉持「不時不食」的日本料理核心精神,根據季節更迭推出限定菜單,務求讓食客品嚐到食材最鮮甜、最完美的本味。</p>
+        </article>
+        <article class="philo-card">
+          <span class="philo-no">叁</span>
+          <h3>款待之心</h3>
+          <p class="jp">おもてなし · Omotenashi</p>
+          <p>我們重視每一位客人的用餐體驗,從熱情周到的服務到細緻入微的擺盤,都力求傳遞出誠摯的日式待客之道。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DISHES 菜式種類卡片 ================= -->
+  <section class="dishes" id="dishes">
+    <div class="container">
+      <div class="head-center">
+        <p class="eyebrow">招牌菜式</p>
+        <h2 class="section-title">六大菜系,盡覽於此</h2>
+        <p class="section-sub">由前菜、刺身壽司、創作卷物、炭火燒物,到麵主食與甜品 — 每類均有招牌之作。</p>
+      </div>
+
+      <div class="dish-grid">
+        <article class="dish-card">
+          <div class="dish-photo">
+            <img src="images/appetizers.jpg" alt="前菜及小食:三文魚他他、茶碗蒸與炸物" loading="lazy" />
+            <span class="dish-tag">Appetizers</span>
+          </div>
+          <div class="dish-body">
+            <h3>前菜及小食</h3>
+            <p class="en">Appetizers &amp; Starters</p>
+            <p>黑松露茶碗蒸、柚子胡椒三文魚他他、酥炸廣島生蠔,以清爽層次打開味蕾。</p>
+            <a class="view-menu" href="restaurant-menu.html#appetizers">View Menu</a>
+          </div>
+        </article>
+
+        <article class="dish-card">
+          <div class="dish-photo">
+            <img src="images/sashimi-platter.jpg" alt="極上廚師發辦刺身盛合,配壽司" loading="lazy" />
+            <span class="dish-tag">Sashimi &amp; Sushi</span>
+          </div>
+          <div class="dish-body">
+            <h3>刺身及壽司</h3>
+            <p class="en">Sashimi &amp; Sushi</p>
+            <p>招牌極上廚師發辦刺身盛合:吞拿魚腩、牡丹蝦、北海道海膽與時令白身魚,入口即化。</p>
+            <a class="view-menu" href="restaurant-menu.html#sashimi-sushi">View Menu</a>
+          </div>
+        </article>
+
+        <article class="dish-card">
+          <div class="dish-photo">
+            <img src="images/rolls.jpg" alt="特製和牛火山卷與創作卷物" loading="lazy" />
+            <span class="dish-tag">Rolls &amp; Fusion</span>
+          </div>
+          <div class="dish-body">
+            <h3>卷物及創作料理</h3>
+            <p class="en">Rolls &amp; Fusion Creations</p>
+            <p>SunSun JP 特製和牛火山卷:炙燒 A5 和牛包裹酥炸蝦與牛油果,淋上秘傳燒肉醬汁。</p>
+            <a class="view-menu" href="restaurant-menu.html#rolls">View Menu</a>
+          </div>
+        </article>
+
+        <article class="dish-card">
+          <div class="dish-photo">
+            <img src="images/robata-mains.jpg" alt="炭火燒物:和牛、燒魚與串燒主菜" loading="lazy" />
+            <span class="dish-tag">Robata Grills</span>
+          </div>
+          <div class="dish-body">
+            <h3>燒物及主菜</h3>
+            <p class="en">Robata Grills &amp; Main Courses</p>
+            <p>備長炭炙燒宮崎 A5 和牛西冷、照燒黑鱈魚、雞肉棒配溫泉蛋,炭香與鮮甜交織。</p>
+            <a class="view-menu" href="restaurant-menu.html#robata">View Menu</a>
+          </div>
+        </article>
+
+        <article class="dish-card">
+          <div class="dish-photo">
+            <img src="images/ramen-claypot.jpg" alt="博多豚骨拉麵與櫻花蝦海鮮石鍋飯" loading="lazy" />
+            <span class="dish-tag">Noodles &amp; Rice</span>
+          </div>
+          <div class="dish-body">
+            <h3>麵食及主食</h3>
+            <p class="en">Noodles &amp; Rice</p>
+            <p>16 小時熬煮的博多風濃郁豚骨拉麵,配自家製極細麵;櫻花蝦海鮮石鍋飯,飯焦香脆。</p>
+            <a class="view-menu" href="restaurant-menu.html#noodles">View Menu</a>
+          </div>
+        </article>
+
+        <article class="dish-card">
+          <div class="dish-photo">
+            <img src="images/desserts.jpg" alt="宇治抹茶流心蛋糕與日式手作水信玄餅" loading="lazy" />
+            <span class="dish-tag">Desserts</span>
+          </div>
+          <div class="dish-body">
+            <h3>甜品</h3>
+            <p class="en">Desserts</p>
+            <p>宇治抹茶流心蛋糕配雲呢拿雪糕、日式手作水信玄餅 — 冰火交融,清爽收尾。</p>
+            <a class="view-menu" href="restaurant-menu.html#desserts">View Menu</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY 環境相片 ================= -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="head-center">
+        <p class="eyebrow">店內環境</p>
+        <h2 class="section-title">沉穩木質 × 柔和暖光</h2>
+        <p class="section-sub">和風簡約的空間設計,吧檯直視 chef 發辦過程,讓用餐成為一場沉浸式體驗。</p>
+      </div>
+
+      <figure class="gallery-main">
+        <img src="images/interior-counter.jpg" alt="SunSun JP 用餐空間與壽司吧檯,暖光木質裝潢" loading="lazy" />
+        <figcaption class="gallery-cap">SunSun JP · 中環 — 吧檯席位可近距離欣賞 chef 現場製作</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= HOURS 營業時間 ================= -->
+  <section class="hours" id="hours">
+    <div class="container">
+      <div class="head-center">
+        <p class="eyebrow">營業時間</p>
+        <h2 class="section-title">迎候您的到臨</h2>
+      </div>
+
+      <div class="hours-grid">
+        <div class="hours-card">
+          <h3>每日時段</h3>
+          <div class="hours-row"><span class="d">星期一至星期四</span><span class="t">12:00–15:00 · 18:00–22:30</span></div>
+          <div class="hours-row"><span class="d">星期五至星期日及公眾假期</span><span class="t">12:00–15:30 · 17:30–23:00</span></div>
+          <p class="hours-note">* 座位滿額時可能需要稍候;節日期間時段如有調整,請先電話查詢。</p>
+
+          <div class="hours-cta">
+            <p><strong>WhatsApp 訂座專線</strong>+852 9876 5432(全日接受訂座)</p>
+            <a class="btn btn-gold" href="https://wa.me/85298765432" target="_blank" rel="noopener">立即訂座</a>
+          </div>
+        </div>
+
+        <div class="hours-card">
+          <h3>訂座小提示</h3>
+          <div class="hours-row"><span class="d">吧檯席位</span><span class="t">可觀 chef 發辦,建議提早預訂</span></div>
+          <div class="hours-row"><span class="d">私人包廂</span><span class="t">適合商務聚會,需提前 48 小時</span></div>
+          <div class="hours-row"><span class="d">節日期間</span><span class="t">時段可能調整,請電話查詢</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VISIT 地址與聯絡方式 ================= -->
+  <section id="visit">
+    <div class="container">
+      <div class="head-center">
+        <p class="eyebrow">地址與聯絡</p>
+        <h2 class="section-title">歡迎蒞臨</h2>
+      </div>
+
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3>聯絡我們</h3>
+          <div class="contact-line"><span class="k">地址</span><span class="v">香港中環威靈頓街 123 號 JP 大廈地下 2 號舖</span></div>
+          <div class="contact-line"><span class="k">電話</span><span class="v"><a href="tel:+85223456789">+852 2345 6789</a></span></div>
+          <div class="contact-line"><span class="k">WhatsApp</span><span class="v"><a href="https://wa.me/85298765432" target="_blank" rel="noopener">+852 9876 5432(訂座專線)</a></span></div>
+          <div class="contact-line"><span class="k">Instagram</span><span class="v"><a href="https://www.instagram.com/sunsunjphk" target="_blank" rel="noopener">@SunSunJPHK</a></span></div>
+          <div class="contact-line"><span class="k">Facebook</span><span class="v"><a href="https://www.facebook.com/sunsunjphk" target="_blank" rel="noopener">SunSun JP</a></span></div>
+        </div>
+
+        <div class="map-card">
+          <h3>如何到這裡</h3>
+          <p class="addr">威靈頓街 123 號<br />JP 大廈地下 2 號舖</p>
+          <p class="addr-en">Shop 2, G/F, JP Building, 123 Wellington Street, Central, Hong Kong</p>
+          <p class="map-note">港鐵中環站 C 出口,沿港灣道步行約 5 分鐘;巴士 5、7、75、101、102 等可於「威靈頓街」停下即達。</p>
+          <a class="btn btn-ghost map-cta" href="https://maps.google.com/?q=%E5%A8%81%E9%9B%85%E9%A0%93%E8%A1%97123%E8%99%9F+JP%E5%A4%A7%E5%BB%88" target="_blank" rel="noopener">在 Google Maps 開啟</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="restaurant.html">
+            <span class="brand-name">SunSun <span>JP</span></span>
+            <span class="brand-sub">和食 Fusion</span>
+          </a>
+          <p>揉合江戶前手藝與現代西日融合風格的高質感日料,位於中環。嚴選日本空運時令漁獲,秉持不時不食。</p>
+        </div>
+
+        <div class="foot-col">
+          <h4>導覽</h4>
+          <ul>
+            <li><a href="#about">關於我們</a></li>
+            <li><a href="#philosophy">料理理念</a></li>
+            <li><a href="#dishes">招牌菜式</a></li>
+            <li><a href="#gallery">店內環境</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h4>菜單與訂座</h4>
+          <ul>
+            <li><a href="restaurant-menu.html">View Menu</a></li>
+            <li><a href="https://wa.me/85298765432" target="_blank" rel="noopener">WhatsApp 訂座</a></li>
+            <li><a href="tel:+85223456789">電話 +852 2345 6789</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h4>營業時間</h4>
+          <ul>
+            <li>週一至四 12:00–15:00 / 18:00–22:30</li>
+            <li>週五至日 12:00–15:30 / 17:30–23:00</li>
+            <li>公眾假期同週五至日時段</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot-bottom">
+        <span>© 2026 SunSun JP · 和食 Fusion</span>
+        <span>@SunSunJPHK &nbsp;·&nbsp; 中環威靈頓街 123 號 JP 大廈地下 2 號舖</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // mobile nav toggle
+    const btn = document.getElementById("navToggle");
+    const links = document.getElementById("navLinks");
+    btn.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open);
+    });
+    links.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") links.classList.remove("open");
+    });
+  </script>
+</body>
+</html>

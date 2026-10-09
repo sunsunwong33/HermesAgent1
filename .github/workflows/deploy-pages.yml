@@ -1,10 +1,10 @@
 # Deploy the static site to GitHub Pages.
 #
 # What this does on every push to main:
-#   1. "build"  — assembles the site in ./site: copies todo-list.html to
-#                 index.html plus a minimal README-driven landing page, then
-#                 runs a quick integrity check (HTML present, no build tools
-#                 required — this is a single-file app).
+#   1. "build"  — assembles the SunSun JP restaurant site (index.html,
+#                 menu.html, styles.css, images/) in ./site/dist and runs a
+#                 quick integrity check (no build tools required — the site
+#                 is plain static HTML/CSS + JPG photos).
 #   2. "deploy" — publishes the built site to GitHub Pages via the official
 #                 actions/deploy-pages action.
 #
@@ -17,7 +17,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'todo-list.html'
+      - 'index.html'
+      - 'menu.html'
+      - 'styles.css'
+      - 'images/**'
       - 'site/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch: {}
@@ -42,39 +45,20 @@ jobs:
       - name: Build site
         run: |
           mkdir -p site/dist
-          # Primary page: the single-file Todo app as the root index.
-          cp todo-list.html site/dist/index.html
-          # Also keep it reachable under its own name.
+          # The restaurant site: root pages + shared stylesheet + photos.
+          cp index.html menu.html styles.css site/dist/
+          cp -r images site/dist/images
+          # Keep the todo app reachable too (it lives under /todo-list.html).
           cp todo-list.html site/dist/todo-list.html
-          # Small home page linking to the app.
-          cat > site/dist/home.html <<'HTML'
-          <!doctype html>
-          <html lang="zh-Hant-HK">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>Todo List</title>
-          </head>
-          <body style="margin:0;min-height:100vh;display:grid;place-items:center;
-                        font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
-                        background:#f4f4f1;color:#17191d">
-            <div style="text-align:center">
-              <h1 style="font-size:28px;margin:0 0 8px">Todo List</h1>
-              <p style="color:#5f6570;margin:0 0 24px">單檔、用 localStorage 儲存待辦事項。</p>
-              <a href="./index.html"
-                 style="display:inline-block;padding:12px 22px;border-radius:12px;
-                        background:#1a9d55;color:#fff;text-decoration:none;
-                        font-weight:600">開啟 Todo App →</a>
-            </div>
-          </body>
-          </html>
-          HTML
 
       - name: Sanity check
         run: |
           test -s site/dist/index.html
-          grep -q "待辦清單" site/dist/index.html
-          echo "build ok: index.html + todo-list.html present"
+          test -s site/dist/menu.html
+          test -s site/dist/styles.css
+          test -s site/dist/images/interior-counter.jpg
+          grep -q "SunSun JP" site/dist/index.html
+          echo "build ok: restaurant site assembled"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

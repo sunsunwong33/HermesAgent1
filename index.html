@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f4f1"/>
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1013"/>
+<title>待辦清單</title>
+<style>
+  * { box-sizing: border-box; }
+
+  :root {
+    color-scheme: light;
+    --bg: #f4f4f1;
+    --surface: #ffffff;
+    --surface-2: #ebebe7;
+    --ink: #17191d;
+    --ink-2: #5f6570;
+    --ink-3: #9ba1ad;
+    --line: #e4e5e0;
+    --accent: #1a9d55;
+    --danger: #cf4136;
+    --ring: color-mix(in srgb, var(--accent) 32%, transparent);
+    --danger-ring: color-mix(in srgb, var(--danger) 25%, transparent);
+    --shadow: 0 1px 2px rgba(20, 22, 26, .04), 0 10px 30px -14px rgba(20, 22, 26, .14);
+    --radius: 14px;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0e1013;
+    --surface: #16181d;
+    --surface-2: #21242b;
+    --ink: #edeff3;
+    --ink-2: #a4abb8;
+    --ink-3: #6b7280;
+    --line: #262a31;
+    --accent: #35c96f;
+    --danger: #ff6b62;
+    --ring: color-mix(in srgb, var(--accent) 30%, transparent);
+    --danger-ring: color-mix(in srgb, var(--danger) 25%, transparent);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .45), 0 14px 34px -16px rgba(0, 0, 0, .55);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+      "Hiragino Sans TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s ease, color .25s ease;
+  }
+
+  .app { max-width: 600px; margin: 0 auto; padding: 44px 20px 72px; }
+
+  /* ── header ─────────────────────────────────────────────── */
+  .head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  h1 { margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -.015em; }
+  .date { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); }
+
+  .theme-btn {
+    flex: none; width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    display: grid; place-items: center; cursor: pointer; box-shadow: var(--shadow);
+    transition: color .15s, border-color .15s, transform .12s;
+  }
+  .theme-btn:hover { color: var(--ink); }
+  .theme-btn:active { transform: scale(.94); }
+  .theme-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+  .theme-btn svg { display: none; width: 18px; height: 18px; stroke: currentColor; fill: none;
+    stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .theme-btn[data-mode="auto"] .ic-auto { display: block; }
+  .theme-btn[data-mode="light"] .ic-light { display: block; }
+  .theme-btn[data-mode="dark"] .ic-dark { display: block; }
+
+  /* ── add row ────────────────────────────────────────────── */
+  .add-card {
+    margin-top: 24px; display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 6px 6px 6px 14px; box-shadow: var(--shadow);
+    transition: border-color .15s;
+  }
+  .add-card:focus-within { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  #new-task {
+    flex: 1; min-width: 0; border: 0; background: transparent;
+    font: inherit; color: var(--ink); padding: 11px 0;
+  }
+  #new-task:focus { outline: none; }
+  #new-task::placeholder { color: var(--ink-3); }
+  .add-btn {
+    flex: none; width: 40px; height: 40px; border: 0; border-radius: 50%;
+    background: var(--accent); color: #fff; cursor: pointer;
+    display: grid; place-items: center;
+    transition: filter .15s, transform .12s;
+  }
+  .add-btn:hover { filter: brightness(1.06); }
+  .add-btn:active { transform: scale(.93); }
+  .add-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+
+  /* ── progress ───────────────────────────────────────────── */
+  .progress-wrap { margin-top: 20px; }
+  .progress-meta {
+    display: flex; justify-content: space-between; margin-bottom: 8px;
+    font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums;
+  }
+  .bar { height: 5px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+  .bar-fill {
+    height: 100%; width: 0%; background: var(--accent); border-radius: inherit;
+    transition: width .35s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  /* ── toolbar: filters + clear ───────────────────────────── */
+  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin-top: 22px; flex-wrap: wrap; }
+  .seg { display: inline-flex; gap: 2px; background: var(--surface-2);
+    border-radius: 11px; padding: 3px; }
+  .seg button {
+    border: 0; background: transparent; color: var(--ink-2); cursor: pointer;
+    font: inherit; font-size: 13px; padding: 7px 13px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 6px; min-height: 34px;
+    transition: background .15s, color .15s;
+  }
+  .seg button[aria-pressed="true"] {
+    background: var(--surface); color: var(--ink); font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+  }
+  .seg button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+  .seg .cnt {
+    font-size: 11px; min-width: 18px; text-align: center; padding: 1px 5px;
+    border-radius: 99px; background: color-mix(in srgb, var(--ink) 8%, transparent);
+    color: var(--ink-2); font-variant-numeric: tabular-nums;
+  }
+  .clear {
+    border: 0; background: none; cursor: pointer; font: inherit; font-size: 13px;
+    color: var(--ink-2); padding: 8px 10px; border-radius: 8px; min-height: 36px;
+    transition: color .15s, background .15s;
+  }
+  .clear:hover { color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, transparent); }
+  .clear:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--danger-ring); }
+
+  /* ── list ───────────────────────────────────────────────── */
+  .list {
+    margin: 16px 0 0; padding: 6px; list-style: none;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+  }
+  .list:empty { display: none; }
+  .item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 10px; border-radius: 10px; position: relative;
+  }
+  .item:not(:last-child) { border-bottom: 1px solid var(--line); }
+  .item:hover { background: color-mix(in srgb, var(--surface-2) 55%, transparent); }
+
+  .label { flex: 1; display: flex; align-items: center; gap: 12px; min-height: 46px; cursor: pointer; }
+  .check { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+  .box {
+    flex: none; width: 22px; height: 22px; border-radius: 7px;
+    border: 1.5px solid var(--ink-3); display: grid; place-items: center;
+    transition: background .15s, border-color .15s, transform .12s;
+  }
+  .label:hover .box { border-color: var(--accent); }
+  .check:checked + .box { background: var(--accent); border-color: var(--accent); }
+  .box svg { width: 12px; height: 10px; stroke: #fff; stroke-width: 2.2; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 16; stroke-dashoffset: 16;
+    transition: stroke-dashoffset .18s ease .06s; }
+  .check:checked + .box svg { stroke-dashoffset: 0; }
+  .check:focus-visible + .box { box-shadow: 0 0 0 3px var(--ring); }
+
+  .text { flex: 1; word-break: break-word; transition: color .25s; }
+  .item.done .text {
+    color: var(--ink-3);
+    text-decoration: line-through;
+    text-decoration-color: color-mix(in srgb, var(--ink-3) 60%, transparent);
+  }
+
+  .del {
+    flex: none; width: 34px; height: 34px; border: 0; border-radius: 50%;
+    background: transparent; color: var(--ink-3); cursor: pointer;
+    display: grid; place-items: center; opacity: 0;
+    transition: opacity .15s, background .15s, color .15s, transform .12s;
+  }
+  .del:hover { background: color-mix(in srgb, var(--danger) 12%, transparent); color: var(--danger); }
+  .del:active { transform: scale(.9); }
+  .del:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 3px var(--danger-ring); }
+  .del svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.8;
+    stroke-linecap: round; fill: none; }
+  .item:hover .del, .item:focus-within .del { opacity: 1; }
+  @media (hover: none) { .del { opacity: .65; } }
+
+  /* ── empty + footer ─────────────────────────────────────── */
+  .empty {
+    display: grid; place-items: center; gap: 10px;
+    padding: 46px 16px; text-align: center; color: var(--ink-3); font-size: 14px;
+  }
+  .empty svg { width: 34px; height: 34px; stroke: var(--ink-3); stroke-width: 1.5;
+    fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: .55; }
+  .foot { margin: 28px 0 0; text-align: center; font-size: 12px; color: var(--ink-3);
+    text-wrap: pretty; }
+
+  /* ── motion ─────────────────────────────────────────────── */
+  .item.enter { animation: item-in .24s cubic-bezier(.2, .8, .3, 1); }
+  @keyframes item-in { from { opacity: 0; transform: translateY(-6px); } }
+  .item.exit { animation: item-out .18s ease forwards; }
+  @keyframes item-out { to { opacity: 0; transform: translateX(12px); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+<main class="app">
+
+  <header class="head">
+    <div>
+      <h1>待辦清單</h1>
+      <p class="date" id="today"></p>
+    </div>
+    <button class="theme-btn" id="theme-btn" type="button" data-mode="auto" title="主題">
+      <svg class="ic-auto" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="10" rx="1.5"/><path d="M10 14v3M7 17h6"/></svg>
+      <svg class="ic-light" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.8 4.8l1.4 1.4M13.8 13.8l1.4 1.4M15.2 4.8l-1.4 1.4M6.2 13.8l-1.4 1.4"/></svg>
+      <svg class="ic-dark" viewBox="0 0 20 20"><path d="M16.5 12.5A7 7 0 1 1 7.5 3.5a5.5 5.5 0 0 0 9 9Z"/></svg>
+    </button>
+  </header>
+
+  <form class="add-card" id="add-form">
+    <input id="new-task" type="text" placeholder="新增任務…" maxlength="200" autocomplete="off"
+      aria-label="新增任務"/>
+    <button class="add-btn" type="submit" aria-label="新增任務">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg>
+    </button>
+  </form>
+
+  <div class="progress-wrap" id="progress-wrap" hidden>
+    <div class="progress-meta"><span id="done-meta"></span></div>
+    <div class="bar" aria-hidden="true"><div class="bar-fill" id="bar-fill"></div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="篩選任務">
+      <button type="button" data-filter="all">全部<span class="cnt">0</span></button>
+      <button type="button" data-filter="active">進行中<span class="cnt">0</span></button>
+      <button type="button" data-filter="done">已完成<span class="cnt">0</span></button>
+    </div>
+    <button type="button" class="clear" id="clear-completed" hidden>清除已完成</button>
+  </div>
+
+  <ul class="list" id="list"></ul>
+
+  <div class="empty" id="empty" hidden>
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-6"/></svg>
+    <p id="empty-text">尚無任務。</p>
+  </div>
+
+  <p class="foot">資料只儲存於此瀏覽器（localStorage），不會上傳到任何伺服器。</p>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var TASKS_KEY = "todo.tasks.v1";
+  var THEME_KEY = "todo.theme";
+
+  var $ = function (s) { return document.querySelector(s); };
+  var list = $("#list"), form = $("#add-form"), input = $("#new-task");
+  var emptyEl = $("#empty"), emptyText = $("#empty-text");
+  var clearBtn = $("#clear-completed"), barFill = $("#bar-fill");
+  var doneMeta = $("#done-meta"), progressWrap = $("#progress-wrap");
+  var segBtns = Array.prototype.slice.call(document.querySelectorAll(".seg button"));
+  var themeBtn = $("#theme-btn");
+
+  // ── state ─────────────────────────────────────────────────
+  var tasks = [];
+  try {
+    var raw = JSON.parse(localStorage.getItem(TASKS_KEY) || "[]");
+    if (Array.isArray(raw)) tasks = raw.filter(function (t) { return t && typeof t.text === "string"; });
+  } catch (e) { tasks = []; }
+
+  var filter = "all";
+  var lastAddedId = null;
+
+  function save() { localStorage.setItem(TASKS_KEY, JSON.stringify(tasks)); }
+  function uid() {
+    return (window.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : "id-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+  }
+  function esc(s) {
+    return s.replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function visible() {
+    if (filter === "active") return tasks.filter(function (t) { return !t.done; });
+    if (filter === "done") return tasks.filter(function (t) { return t.done; });
+    return tasks;
+  }
+
+  // ── render ────────────────────────────────────────────────
+  function render() {
+    var focusBefore = null;
+    var ae = document.activeElement;
+    if (ae && ae.classList && ae.classList.contains("check") && ae.closest(".item")) {
+      focusBefore = ae.closest(".item").dataset.id;
+    }
+
+    var items = visible();
+    list.innerHTML = items.map(function (t) {
+      var cls = "item" + (t.done ? " done" : "") + (t.id === lastAddedId ? " enter" : "");
+      return '<li class="' + cls + '" data-id="' + t.id + '">' +
+        '<label class="label">' +
+          '<input class="check" type="checkbox"' + (t.done ? " checked" : "") +
+            ' aria-label="切換任務：' + esc(t.text) + '">' +
+          '<span class="box" aria-hidden="true"><svg viewBox="0 0 12 10"><path d="M1.5 5.5 4.5 8.5 10.5 1.5"/></svg></span>' +
+          '<span class="text">' + esc(t.text) + "</span>" +
+        "</label>" +
+        '<button class="del" type="button" aria-label="刪除任務"><svg viewBox="0 0 14 14"><path d="M3 3l8 8M11 3l-8 8"/></svg></button>' +
+      "</li>";
+    }).join("");
+    lastAddedId = null;
+
+    if (focusBefore) {
+      var restored = list.querySelector('.item[data-id="' + focusBefore + '"] .check');
+      if (restored) restored.focus();
+    }
+
+    // progress
+    var total = tasks.length;
+    var done = tasks.filter(function (t) { return t.done; }).length;
+    progressWrap.hidden = total === 0;
+    if (total) {
+      barFill.style.width = (done / total * 100) + "%";
+      doneMeta.textContent = done + " / " + total + " 已完成";
+    }
+    clearBtn.hidden = done === 0;
+
+    // filter counts
+    var counts = { all: total, active: total - done, done: done };
+    segBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.filter === filter));
+      b.querySelector(".cnt").textContent = counts[b.dataset.filter];
+    });
+
+    // empty state
+    emptyEl.hidden = items.length > 0;
+    if (!items.length) {
+      emptyText.textContent =
+        filter === "all" ? "尚無任務，輸入你的第一項。" :
+        filter === "active" ? "所有任務都已完成。" :
+        "完成一項後，會顯示在這裡。";
+    }
+  }
+
+  // ── actions ───────────────────────────────────────────────
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    var t = { id: uid(), text: text, done: false };
+    tasks.push(t);
+    lastAddedId = t.id;
+    filter = "all";            // make the new item visible regardless of current filter
+    save(); render();
+    input.value = "";
+    input.focus();
+  });
+
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { input.value = ""; input.blur(); }
+  });
+
+  list.addEventListener("change", function (e) {
+    var cb = e.target.closest ? e.target.closest(".check") : null;
+    if (!cb) return;
+    var id = cb.closest(".item").dataset.id;
+    var t = null;
+    for (var i = 0; i < tasks.length; i++) if (tasks[i].id === id) t = tasks[i];
+    if (!t) return;
+    t.done = cb.checked;
+    save(); render();
+  });
+
+  list.addEventListener("click", function (e) {
+    var btn = e.target.closest(".del");
+    if (!btn) return;
+    var li = btn.closest(".item");
+    if (li.classList.contains("exit")) return;
+    var id = li.dataset.id;
+    li.classList.add("exit");
+    setTimeout(function () {
+      tasks = tasks.filter(function (t) { return t.id !== id; });
+      save(); render();
+    }, 170);
+  });
+
+  segBtns.forEach(function (b) {
+    b.addEventListener("click", function () { filter = b.dataset.filter; render(); });
+  });
+
+  clearBtn.addEventListener("click", function () {
+    tasks = tasks.filter(function (t) { return !t.done; });
+    save(); render();
+  });
+
+  // ── date ──────────────────────────────────────────────────
+  $("#today").textContent = new Intl.DateTimeFormat("zh-Hant-HK",
+    { month: "long", day: "numeric", weekday: "long" }).format(new Date());
+
+  // ── theme (auto → light → dark) ──────────────────────────
+  var modes = ["auto", "light", "dark"];
+  var theme = localStorage.getItem(THEME_KEY) || "auto";
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var labels = { auto: "跟隨系統", light: "淺色", dark: "深色" };
+
+  function applyTheme() {
+    var dark = theme === "dark" || (theme === "auto" && mql.matches);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    themeBtn.dataset.mode = theme;
+    themeBtn.title = "主題：" + labels[theme] + "（點擊切換）";
+    themeBtn.setAttribute("aria-label", themeBtn.title);
+  }
+  mql.addEventListener("change", function () { if (theme === "auto") applyTheme(); });
+  themeBtn.addEventListener("click", function () {
+    theme = modes[(modes.indexOf(theme) + 1) % modes.length];
+    localStorage.setItem(THEME_KEY, theme);
+    applyTheme();
+  });
+  applyTheme();
+
+  render();
+})();
+</script>
+</body>
+</html>

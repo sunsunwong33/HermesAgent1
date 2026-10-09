@@ -50,8 +50,8 @@ jobs:
           # Root site picker + To-do app.
           cp index.html site/dist/
           cp todo-list.html site/dist/
-          # SunSun JP restaurant site + shared stylesheet + photos.
-          cp restaurant.html restaurant-menu.html styles.css site/dist/
+          # SunSun JP restaurant site + shared stylesheet + photos + cart logic.
+          cp restaurant.html restaurant-menu.html styles.css cart.js site/dist/
           cp -r images site/dist/images
 
       - name: Sanity check
@@ -61,9 +61,10 @@ jobs:
           test -s site/dist/restaurant.html
           test -s site/dist/restaurant-menu.html
           test -s site/dist/styles.css
+          test -s site/dist/cart.js
           test -s site/dist/images/interior-counter.jpg
           grep -q "SunSun's Sites" site/dist/index.html
-          echo "build ok: root picker + todo + restaurant site assembled"
+          echo "build ok: root picker + todo + restaurant site + cart assembled"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

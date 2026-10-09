@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menu | SunSun JP — 和食 Fusion 菜單與價格</title>
-  <meta name="description" content="SunSun JP 完整菜單:前菜小食、刺身壽司、創作卷物、炭火燒物、麵主食與甜品,價格以港幣計。歡迎線上訂座。" />
+  <title>Menu | SunSun JP — 和食 Fusion 菜單・線上點餐</title>
+  <meta name="description" content="SunSun JP 完整菜單:前菜小食、刺身壽司、創作卷物、炭火燒物、麵主食與甜品。線上加入購物車,一鍵 WhatsApp 送單。價格以港幣計。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -41,7 +41,7 @@
     <div class="container">
       <p class="hero-kicker">和食 Fusion &nbsp;·&nbsp; Edomae × Modern</p>
       <h1>Menu <span>· 菜單</span></h1>
-      <p>嚴選每日由日本空運到港的時令漁獲 · 不時不食,隨季節更迭推出限定菜單<br />價格以港幣 (HKD) 計算</p>
+      <p>嚴選每日由日本空運到港的時令漁獲 · 不時不食,隨季節更迭推出限定菜單<br />價格以港幣 (HKD) 計算 · 線上點餐經 WhatsApp 送單</p>
     </div>
   </section>
 
@@ -55,31 +55,46 @@
       </div>
 
       <div class="menu-items">
-        <div class="menu-item">
+        <div class="menu-item" data-id="m01" data-name="黑松露茶碗蒸" data-en="Black Truffle Chawanmushi" data-price="88" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">黑松露茶碗蒸 <span class="en">Black Truffle Chawanmushi</span></p>
             <p class="desc">滑嫩如絲的日式蒸蛋,注入濃郁的高湯,表面鋪上新鮮刨製的黑松露片,香氣撲鼻。</p>
           </div>
-          <p class="price">$88 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$88 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m02" data-name="柚子胡椒牛油果三文魚他他" data-en="Yuzu Kosho Salmon Tartare" data-price="128" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">柚子胡椒牛油果三文魚他他 <span class="en">Yuzu Kosho Salmon Tartare</span></p>
             <p class="desc">新鮮三文魚粒拌入微辣清爽的柚子胡椒醬,搭配綿密牛油果,清新開胃。</p>
           </div>
-          <p class="price">$128 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$128 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m03" data-name="酥炸廣島生蠔" data-en="Crispy Fried Hiroshima Oysters" data-price="108" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">酥炸廣島生蠔 <span class="en">Crispy Fried Hiroshima Oysters</span></p>
             <p class="desc">外層包裹極細麵包糠炸至金黃酥脆,內裡保持蠔肉的鮮嫩多汁,佐以自家製塔塔醬。</p>
           </div>
-          <p class="price">$108 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$108 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -95,31 +110,46 @@
       </div>
 
       <div class="menu-items">
-        <div class="menu-item sig">
+        <div class="menu-item sig" data-id="m04" data-name="極上廚師發辦刺身盛合" data-en="Omakase Sashimi Platter" data-price="580" data-sig="1">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">極上廚師發辦刺身盛合 <span class="en">Omakase Sashimi Platter</span> <span class="badge-sig">招牌 Signature</span></p>
             <p class="desc">嚴選當季最肥美的吞拿魚腩、牡丹蝦、北海道海膽及時令白身魚,肉質鮮甜彈牙,入口即化。</p>
           </div>
-          <p class="price">$580 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$580 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m05" data-name="炙燒火炙三文魚三味壽司" data-en="Aburi Salmon Sushi Trio" data-price="98" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">炙燒火炙三文魚三味壽司 <span class="en">Aburi Salmon Sushi Trio</span></p>
             <p class="desc">分別搭配明太子醬、芝士黑椒及松露蜜糖炙燒,呈現三種截然不同的層次風味。</p>
           </div>
-          <p class="price">$98 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$98 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m06" data-name="本鮪大腹海膽軍艦" data-en="Otoro & Uni Gunkan / 2 貫" data-price="168" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">本鮪大腹海膽軍艦 <span class="en">Otoro &amp; Uni Gunkan / 2 貫</span></p>
             <p class="desc">油脂極為豐腴的大腹蓉,配上濃郁甘甜的北海道馬糞海膽,奢華口感一次滿足。</p>
           </div>
-          <p class="price">$168 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$168 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
       </div>
 
@@ -137,22 +167,32 @@
       </div>
 
       <div class="menu-items">
-        <div class="menu-item sig">
+        <div class="menu-item sig" data-id="m07" data-name="SunSun JP 特製和牛火山卷" data-en="Signature Wagyu Volcano Roll" data-price="188" data-sig="1">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">SunSun JP 特製和牛火山卷 <span class="en">Signature Wagyu Volcano Roll</span> <span class="badge-sig">招牌 Signature</span></p>
             <p class="desc">外層包裹油花分佈均勻的炙燒 A5 和牛,內餡搭配酥炸蝦與牛油果,淋上秘傳燒肉醬汁,層次豐富。</p>
           </div>
-          <p class="price">$188 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$188 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m08" data-name="軟殼蟹牛油果卷" data-en="Soft Shell Crab Roll" data-price="148" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">軟殼蟹牛油果卷 <span class="en">Soft Shell Crab Roll</span></p>
             <p class="desc">整隻香酥軟殼蟹包裹在壽司飯中,外撒香脆紫菜碎與飛魚子,口感豐富。</p>
           </div>
-          <p class="price">$148 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$148 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -168,31 +208,46 @@
       </div>
 
       <div class="menu-items">
-        <div class="menu-item">
+        <div class="menu-item" data-id="m09" data-name="厚燒宮崎 A5 和牛西冷 (150g)" data-en="A5 Miyazaki Wagyu Sirloin / 150g" data-price="480" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">厚燒宮崎 A5 和牛西冷 <span class="en">A5 Miyazaki Wagyu Sirloin / 150g</span></p>
             <p class="desc">以備長炭高溫極速封鎖肉汁,外脆內嫩,沾上少許山葵或海鹽更能特顯牛肉的鮮甜。</p>
           </div>
-          <p class="price">$480 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$480 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m10" data-name="日式照燒黑鱈魚" data-en="Teriyaki Black Cod" data-price="220" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">日式照燒黑鱈魚 <span class="en">Teriyaki Black Cod</span></p>
             <p class="desc">肉質細嫩的黑鱈魚以特製照燒汁慢火烤至入味,魚皮帶微焦香氣,入口即化。</p>
           </div>
-          <p class="price">$220 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$220 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m11" data-name="免治雞肉棒配溫泉蛋" data-en="Tsukune with Onsen Tamago" data-price="82" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">免治雞肉棒配溫泉蛋 <span class="en">Tsukune with Onsen Tamago</span></p>
             <p class="desc">人手拍打製成的日式雞肉棒,炭烤後刷上甜醬油,沾裹流心溫泉蛋黃,滋味濃郁。</p>
           </div>
-          <p class="price">$82 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$82 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -208,22 +263,32 @@
       </div>
 
       <div class="menu-items">
-        <div class="menu-item sig">
+        <div class="menu-item sig" data-id="m12" data-name="福岡博多風濃郁豚骨拉麵" data-en="Hakata Tonkotsu Ramen" data-price="118" data-sig="1">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">福岡博多風濃郁豚骨拉麵 <span class="en">Hakata Tonkotsu Ramen</span> <span class="badge-sig">招牌 Signature</span></p>
             <p class="desc">熬煮超過 16 小時的濃郁乳白色湯底,配搭自家製極細拉麵與入口即化的炙燒叉燒,香氣四溢。</p>
           </div>
-          <p class="price">$118 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$118 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item sig">
+        <div class="menu-item sig" data-id="m13" data-name="櫻花蝦海鮮石鍋飯" data-en="Sakura Shrimp & Seafood Claypot Rice" data-price="158" data-sig="1">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">櫻花蝦海鮮石鍋飯 <span class="en">Sakura Shrimp &amp; Seafood Claypot Rice</span> <span class="badge-sig">招牌 Signature</span></p>
             <p class="desc">高溫石鍋逼出櫻花蝦與多款海鮮的焦香,飯底帶有金黃香脆的飯焦,令人回味無窮。</p>
           </div>
-          <p class="price">$158 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$158 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -239,22 +304,32 @@
       </div>
 
       <div class="menu-items">
-        <div class="menu-item">
+        <div class="menu-item" data-id="m14" data-name="宇治抹茶流心蛋糕配雲呢拿雪糕" data-en="Uji Matcha Lava Cake" data-price="78" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">宇治抹茶流心蛋糕配雲呢拿雪糕 <span class="en">Uji Matcha Lava Cake</span></p>
             <p class="desc">切開即有濃郁溫熱的抹茶流心湧出,搭配冰涼的雲呢拿雪糕,完美演繹冰火交融。</p>
           </div>
-          <p class="price">$78 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$78 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" data-id="m15" data-name="日式手作水信玄餅" data-en="Mizu Shingen Mochi" data-price="58" data-sig="0">
           <span class="dot" aria-hidden="true"></span>
           <div>
             <p class="name">日式手作水信玄餅 <span class="en">Mizu Shingen Mochi</span></p>
             <p class="desc">晶瑩剔透如水晶般的傳統甜品,伴以黑糖漿與黃豆粉,口感清爽不甜膩。</p>
           </div>
-          <p class="price">$58 <small>HKD</small></p>
+          <div class="cart-cell">
+            <p class="price">$58 <small>HKD</small></p>
+            <span class="add-btn" role="button" tabindex="0">
+              <svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg> 加入購物車
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -294,7 +369,7 @@
           <ul>
             <li><a href="restaurant-menu.html">View Menu</a></li>
             <li><a href="https://wa.me/85298765432" target="_blank" rel="noopener">WhatsApp 訂座</a></li>
-            <li><a href="tel:+85223456789">電話 +852 2345 6789</a></li>
+            <li><a href="tel:+852****6789">電話 +852 2345 6789</a></li>
           </ul>
         </div>
 
@@ -315,16 +390,57 @@
     </div>
   </footer>
 
-  <script>
-    const btn = document.getElementById("navToggle");
-    const links = document.getElementById("navLinks");
-    btn.addEventListener("click", () => {
-      const open = links.classList.toggle("open");
-      btn.setAttribute("aria-expanded", open);
-    });
-    links.addEventListener("click", (e) => {
-      if (e.target.tagName === "A") links.classList.remove("open");
-    });
-  </script>
+  <!-- ================= CART (shared: also on restaurant.html) ================= -->
+  <button class="cart-fab" id="cartFab" aria-label="開啟購物車">
+    <svg viewBox="0 0 20 20"><path d="M3 4h2l2.4 10.6a1 1 0 0 0 .98.8h7.4a1 1 0 0 0 .98-.78L18.5 7H6.2"/><circle cx="9.5" cy="17.5" r="1.2"/><circle cx="16.5" cy="17.5" r="1.2"/></svg>
+    <span>購物車</span>
+    <span class="fab-count" id="fabCount">0</span>
+    <span class="fab-total" id="fabTotal"></span>
+  </button>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-label="購物車" aria-modal="true">
+    <div class="cart-head">
+      <h2>購物車</h2>
+      <button class="clear-cart" id="clearCart">清空</button>
+    </div>
+
+    <div class="cart-body" id="cartBody"></div>
+
+    <div class="cart-foot">
+      <label>服務方式</label>
+      <div class="row">
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 0">
+          <input type="radio" name="svc" id="svcDine" value="堂食" checked style="accent-color:#c9a227" />
+          <label for="svcDine" style="font-size:13.5px;color:var(--text);letter-spacing:0">堂食</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 0">
+          <input type="radio" name="svc" id="svcTake" value="外賣自取" style="accent-color:#c9a227" />
+          <label for="svcTake" style="font-size:13.5px;color:var(--text);letter-spacing:0">外賣自取</label>
+        </div>
+      </div>
+
+      <label>您的稱呼 *</label>
+      <input type="text" id="custName" placeholder="例:王先生 / Miss Lee" maxlength="30" />
+
+      <label>備註(選填)</label>
+      <textarea id="custNote" rows="2" placeholder="例:少辣、對海鮮過敏、指定時間取餐…" maxlength="200"></textarea>
+
+      <div class="cart-total">
+        <span class="lbl">合計 (subtotal)</span>
+        <span class="amt" id="cartTotal">$0</span>
+      </div>
+
+      <button class="btn cart-checkout" id="checkoutBtn" disabled>
+        經 WhatsApp 送單
+      </button>
+      <p class="cart-note">送單經餐廳 WhatsApp +852 9876 5432 · 付款於店內完成</p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="cart.js"></script>
 </body>
 </html>

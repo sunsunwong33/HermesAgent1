@@ -318,6 +318,57 @@
     </div>
   </footer>
 
+  <!-- ================= CART (shared with restaurant-menu.html) ================= -->
+  <button class="cart-fab" id="cartFab" aria-label="開啟購物車">
+    <svg viewBox="0 0 20 20"><path d="M3 4h2l2.4 10.6a1 1 0 0 0 .98.8h7.4a1 1 0 0 0 .98-.78L18.5 7H6.2"/><circle cx="9.5" cy="17.5" r="1.2"/><circle cx="16.5" cy="17.5" r="1.2"/></svg>
+    <span>購物車</span>
+    <span class="fab-count" id="fabCount">0</span>
+    <span class="fab-total" id="fabTotal"></span>
+  </button>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-label="購物車" aria-modal="true">
+    <div class="cart-head">
+      <h2>購物車</h2>
+      <button class="clear-cart" id="clearCart">清空</button>
+    </div>
+
+    <div class="cart-body" id="cartBody"></div>
+
+    <div class="cart-foot">
+      <label>服務方式</label>
+      <div class="row">
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 0">
+          <input type="radio" name="svc" id="svcDine" value="堂食" checked style="accent-color:#c9a227" />
+          <label for="svcDine" style="font-size:13.5px;color:var(--text);letter-spacing:0">堂食</label>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 0">
+          <input type="radio" name="svc" id="svcTake" value="外賣自取" style="accent-color:#c9a227" />
+          <label for="svcTake" style="font-size:13.5px;color:var(--text);letter-spacing:0">外賣自取</label>
+        </div>
+      </div>
+
+      <label>您的稱呼 *</label>
+      <input type="text" id="custName" placeholder="例:王先生 / Miss Lee" maxlength="30" />
+
+      <label>備註(選填)</label>
+      <textarea id="custNote" rows="2" placeholder="例:少辣、對海鮮過敏、指定時間取餐…" maxlength="200"></textarea>
+
+      <div class="cart-total">
+        <span class="lbl">合計 (subtotal)</span>
+        <span class="amt" id="cartTotal">$0</span>
+      </div>
+
+      <button class="btn cart-checkout" id="checkoutBtn" disabled>
+        經 WhatsApp 送單
+      </button>
+      <p class="cart-note">送單經餐廳 WhatsApp +852 9876 5432 · 付款於店內完成</p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
   <script>
     // mobile nav toggle
     const btn = document.getElementById("navToggle");
@@ -330,5 +381,6 @@
       if (e.target.tagName === "A") links.classList.remove("open");
     });
   </script>
+  <script src="cart.js"></script>
 </body>
 </html>
